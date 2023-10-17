@@ -88,11 +88,17 @@ class Pyc3l:
 
             @property
             def data(self):
-                pyc3l_instance.getTransactionInfo(self.address)
+                ## XXXvlab: ``getTransactionInfo`` should not be on ``Currency`` objects,
+                ## this shows why: here we have to create a dummy currency just to get
+                ## access to the endpoint api mecanism.
+                return pyc3l_instance.Currency("").getTransactionInfo(self.address)
 
             @property
             def block(self):
-                pyc3l_instance.getTransactionBLock(self.address)
+                ## XXXvlab: ``getTransactionBLock`` should not be on ``Currency`` objects,
+                ## this shows why: here we have to create a dummy currency just to get
+                ## access to the endpoint api mecanism.
+                return pyc3l_instance.Currency("").getTransactionBLock(self.address)
 
             @property
             def pending(self):
